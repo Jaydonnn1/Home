@@ -1,43 +1,82 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Josh Haydon Rowe</title>
+    <title>Your Name - Personal Website</title>
     <style>
-        h1 {
+        body {
             font-family: Arial, sans-serif;
-            font-size: 36px;
-            text-decoration: underline double;
+            margin: 0;
+            padding: 0;
         }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        section {
+            padding: 50px;
+        }
+
         h2 {
-            font-family: Arial, sans-serif;
-            font-size: 24px;
-        }
-        p {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-        }
-        .content {
-            display: flex;
-            align-items: flex-start;
-        }
-        .image {
-            flex: 1;
-            margin-left: 20px;
-        }
-        .image img {
-            max-width: 100%;
-            height: auto;
+            text-align: center;
         }
     </style>
 </head>
+
 <body>
-    <h2>About</h2>
-    <p>
-         I am a junior majoring in chemical engineering at the University of Edinburgh with a year abroad at UC Berkeley. Research, batteries, global exploration, language learning & intramural rugby is where I enjoy spending my time. 
-        
-        This site should serve as a repository for all things in tech I find interesting and travel experienes
-    </p>
+
+    <header>
+        <h1>Your Name</h1>
+        <p>Welcome to My Personal Website</p>
+    </header>
+
+    <nav>
+        <a href="#engineering">Engineering</a>
+        <a href="#travels">Travels</a>
+    </nav>
+
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>I am a junior majoring in chemical engineering at the University of Edinburgh with a year abroad at UC Berkeley. Research, batteries, global exploration, language learning & intramural rugby is where I enjoy spending my time. .</p>
+    </section>
+
+    <section id="engineering">
+        <h2>Engineering</h2>
+        <p>This section is dedicated to engineering. </p>
     
+    </section>
+
+    <section id="travels">
+        <h2>Travels</h2>
+        <p> Travels 
+    </section>
+
 </body>
+
 </html>
