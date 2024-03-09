@@ -51,7 +51,7 @@
 <body>
 
     <header>
-        <h1>Your Name</h1>
+        <h1>Josh Haydon Rowe</h1>
         <p>Welcome to My Personal Website</p>
     </header>
 
@@ -74,8 +74,6 @@
     <section id="travels">
         <h2>Travels</h2>
         <p> Travels 
-    </section>
+    
 
-</body>
 
-</html>
