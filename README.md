@@ -71,11 +71,22 @@
     
     </section>
 
-    <section id="travels">
+   <section id="travels">
     <h2>Travels</h2>
-    <p>Updating these pages shortly:</p>
-    <button onclick="location.href='mexico-to-colombia.html'">Mexico to Colombia</button>
-    <button onclick="location.href='lima-to-ushuaia.html'">Lima to Ushuaia - Hitchhiking the Panamerican Highway</button>
-    
+    <p>Explore my travel adventures:</p>
+    <button onclick="location.href='#mexico-colombia'">Mexico to Colombia</button>
+    <button onclick="location.href='#lima-ushuaia'">Lima to Ushuaia - Hitchhiking the Panamerican Highway</button>
+</section>
+
+<section id="mexico-colombia">
+    <h3>Mexico to Colombia</h3>
+    <p>Details about the journey from Mexico to Colombia.</p>
+</section>
+
+<section id="lima-ushuaia">
+    <h3>Lima to Ushuaia - Hitchhiking the Panamerican Highway</h3>
+    <p>Details about the journey from Lima to Ushuaia.</p>
+</section>
+
 
 
