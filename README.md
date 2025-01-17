@@ -63,7 +63,7 @@
 
     <section id="introduction">
         <h2>Introduction</h2>
-        <p>I am a junior majoring in chemical engineering at the University of Edinburgh with a year abroad at UC Berkeley. Research, batteries, global exploration, language learning & intramural rugby is where I enjoy spending my time.</p>
+        <p>I am a senior majoring in chemical engineering at the University of Edinburgh with a year abroad at UC Berkeley, with research experience at Yale, and a few months interning at Tesla. I'm interested renewable energy sources, climate tech, global exploration, language learning & a little surfing on the side.</p>
     </section>
 
     <section id="engineering">
