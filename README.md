@@ -63,7 +63,7 @@
 
     <section id="introduction">
         <h2>Introduction</h2>
-        <p>I am a senior majoring in chemical engineering at the University of Edinburgh with a year abroad at UC Berkeley, with research experience at Yale, and a few months interning at Tesla. I'm interested renewable energy sources, climate tech, global exploration, language learning & a little surfing on the side.</p>
+        <p>I am a senior majoring in chemical engineering at the University of Edinburgh with a year abroad at UC Berkeley, with research experience at Yale, and a few months interning at Tesla. I'm interested in renewable energy sources, climate tech, global exploration, language learning & a little surfing on the side.</p>
     </section>
 
     <section id="engineering">
