@@ -50,7 +50,11 @@
 </head>
 
 <body>
-
+ <div class="resume-button">
+    <a href="path-to-your-resume/resume.pdf">
+        <button>Resume</button>
+    </a>
+</div>
     <header>
         <h1>Josh Haydon Rowe</h1>
         <p>Welcome to My Personal Website</p>
@@ -78,11 +82,7 @@
         <button onclick="location.href='mexico-to-colombia.html'">Mexico to Colombia</button>
         <button onclick="location.href='lima-to-ushuaia.html'">Lima to Ushuaia - Hitchhiking the Panamerican Highway</button>
  </section>
- <div class="resume-button">
-    <a href="path-to-your-resume/resume.pdf">
-        <button>Resume</button>
-    </a>
-</div>
+
 
 
 
