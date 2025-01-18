@@ -69,8 +69,10 @@
     <div class="top-nav">
         <a href="#engineering">Engineering</a>
         <a href="#travels">Travels</a>
-        <a href="path-to-your-resume/resume.pdf">Resume</a>
+        <a href="/Users/j/Documents/Jobs/Josh_Haydon_Rowe_resume_9_12_2024.pdf">Resume</a>
     </div>
+
+
 
     <div class="header-content">
         <h1>Josh Haydon Rowe</h1>
