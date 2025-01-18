@@ -3,7 +3,7 @@
     <link rel="canonical" href="https://joshhaydonrowe.com/" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Josh Haydon Rowe </title>
+    <title>Josh Haydon Rowe</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,34 +11,42 @@
             padding: 0;
         }
 
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-        }
-
         .top-nav {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 20px;
             display: flex;
-            gap: 10px;
+            gap: 15px;
+            z-index: 1000;
         }
 
         .top-nav a {
             text-decoration: none;
-            color: #fff;
+            color: #333;
             padding: 10px 20px;
-            border: 1px solid #fff;
+            border: 1px solid #333;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            background-color: white;
         }
 
         .top-nav a:hover {
-            background-color: #fff;
-            color: #333;
+            background-color: #333;
+            color: white;
+        }
+
+        .header-content {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .header-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header-content p {
+            font-size: 1.2em;
         }
 
         section {
@@ -58,15 +66,16 @@
 </head>
 
 <body>
-    <header>
-        <div class="top-nav">
-            <a href="#engineering">Engineering</a>
-            <a href="#travels">Travels</a>
-            <a href="path-to-your-resume/resume.pdf">Resume</a>
-        </div>
+    <div class="top-nav">
+        <a href="#engineering">Engineering</a>
+        <a href="#travels">Travels</a>
+        <a href="path-to-your-resume/resume.pdf">Resume</a>
+    </div>
+
+    <div class="header-content">
         <h1>Josh Haydon Rowe</h1>
         <p>Welcome to My Personal Website</p>
-    </header>
+    </div>
 
     <section id="introduction">
         <h2>Introduction</h2>
@@ -75,7 +84,7 @@
 
     <section id="engineering">
         <h2>Engineering</h2>
-        <p>This section is dedicated to engineering. </p>
+        <p>This section is dedicated to engineering.</p>
     </section>
 
     <section id="travels">
