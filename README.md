@@ -69,7 +69,7 @@
     <div class="top-nav">
         <a href="#engineering">Engineering</a>
         <a href="#travels">Travels</a>
-        <a href="">Resume</a>
+        <a href=""></a>
     </div>
 
 
