@@ -1,5 +1,4 @@
 <html lang="en">
-
 <head>
     <link rel="canonical" href="https://joshhaydonrowe.com/" />
     <meta charset="UTF-8">
@@ -17,26 +16,29 @@
             color: #fff;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
 
-        nav {
-            text-align: center;
-            margin-top: 20px;
+        .top-nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
         }
 
-        nav a {
+        .top-nav a {
             text-decoration: none;
-            color: #333;
+            color: #fff;
             padding: 10px 20px;
-            margin: 0 10px;
-            border: 1px solid #333;
+            border: 1px solid #fff;
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
 
-        nav a:hover {
-            background-color: #333;
-            color: #fff;
+        .top-nav a:hover {
+            background-color: #fff;
+            color: #333;
         }
 
         section {
@@ -46,24 +48,25 @@
         h2 {
             text-align: center;
         }
+
+        .travel-buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
- <div class="resume-button">
-    <a href="path-to-your-resume/resume.pdf">
-        <button>Resume</button>
-    </a>
-</div>
     <header>
+        <div class="top-nav">
+            <a href="#engineering">Engineering</a>
+            <a href="#travels">Travels</a>
+            <a href="path-to-your-resume/resume.pdf">Resume</a>
+        </div>
         <h1>Josh Haydon Rowe</h1>
         <p>Welcome to My Personal Website</p>
     </header>
-
-    <nav>
-        <a href="#engineering">Engineering</a>
-        <a href="#travels">Travels</a>
-    </nav>
 
     <section id="introduction">
         <h2>Introduction</h2>
@@ -73,17 +76,15 @@
     <section id="engineering">
         <h2>Engineering</h2>
         <p>This section is dedicated to engineering. </p>
-    
     </section>
 
     <section id="travels">
         <h2>Travels</h2>
         <p>Explore my travel adventures:</p>
-        <button onclick="location.href='mexico-to-colombia.html'">Mexico to Colombia</button>
-        <button onclick="location.href='lima-to-ushuaia.html'">Lima to Ushuaia - Hitchhiking the Panamerican Highway</button>
- </section>
-
-
-
-
-
+        <div class="travel-buttons">
+            <button onclick="location.href='mexico-to-colombia.html'">Mexico to Colombia</button>
+            <button onclick="location.href='lima-to-ushuaia.html'">Lima to Ushuaia - Hitchhiking the Panamerican Highway</button>
+        </div>
+    </section>
+</body>
+</html>
