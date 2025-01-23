@@ -125,5 +125,18 @@
             <button onclick="location.href='lima-to-ushuaia.html'">Lima to Ushuaia - Hitchhiking the Panamerican Highway</button>
         </div>
     </section>
+    <script src="globe.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const globe = new Globe();
+        
+        // Handle window resizing
+        window.addEventListener('resize', () => {
+            globe.camera.aspect = window.innerWidth / window.innerHeight;
+            globe.camera.updateProjectionMatrix();
+            globe.renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    });
+</script>
 </body>
 </html>
