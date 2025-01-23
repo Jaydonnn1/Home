@@ -1,112 +1,87 @@
 class Globe {
     constructor() {
+        // Debug log to ensure constructor is called
+        console.log('Initializing Saturn visualization');
         this.init();
         this.animate();
     }
 
     init() {
+        // Create scene
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x000000);
 
-        // Camera setup with better positioning
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        this.camera.position.set(0, 30, 100);
-        this.camera.lookAt(0, 0, 0);
+        // Camera setup
+        this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+        this.camera.position.set(0, 0, 150);
 
-        // Enhanced renderer settings
+        // Renderer setup
         this.renderer = new THREE.WebGLRenderer({
             canvas: document.getElementById('globe-canvas'),
-            antialias: true
+            antialias: true,
+            alpha: false
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // Enhanced lighting setup
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 2.0);
-        directionalLight.position.set(30, 10, 30);
-        const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
-        backLight.position.set(-30, 0, -30);
-        this.scene.add(ambientLight, directionalLight, backLight);
+        // Basic lighting
+        const light = new THREE.DirectionalLight(0xffffff, 3);
+        light.position.set(50, 50, 50);
+        this.scene.add(light);
 
-        // Saturn body
-        const saturnGeometry = new THREE.SphereGeometry(20, 64, 64);
-        const saturnMaterial = new THREE.MeshPhongMaterial({
-            color: 0xf4d03f,
-            shininess: 25,
-            specular: 0x333333,
-            emissive: 0x996515,
-            emissiveIntensity: 0.1
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+        this.scene.add(ambientLight);
+
+        // Create Saturn
+        const geometry = new THREE.SphereGeometry(15, 32, 32);
+        const material = new THREE.MeshStandardMaterial({
+            color: 0xffd700,
+            metalness: 0.1,
+            roughness: 0.7
         });
-        this.saturn = new THREE.Mesh(saturnGeometry, saturnMaterial);
-        this.saturn.rotation.z = THREE.MathUtils.degToRad(26.73);
+        
+        this.saturn = new THREE.Mesh(geometry, material);
         this.scene.add(this.saturn);
 
-        // Main ring system
-        const ringGeometry = new THREE.RingGeometry(30, 45, 128, 8);
-        const ringMaterial = new THREE.MeshPhongMaterial({
-            color: 0xd4c4a8,
+        // Create rings
+        const ringGeometry = new THREE.RingGeometry(20, 35, 64);
+        const ringMaterial = new THREE.MeshStandardMaterial({
+            color: 0xc0c0c0,
             side: THREE.DoubleSide,
-            transparent: true,
-            opacity: 0.8,
-            shininess: 30,
-            specular: new THREE.Color(0x808080)
+            metalness: 0.3,
+            roughness: 0.6
         });
+        
         this.rings = new THREE.Mesh(ringGeometry, ringMaterial);
         this.rings.rotation.x = Math.PI / 2;
-        this.rings.rotation.z = THREE.MathUtils.degToRad(26.73);
         this.scene.add(this.rings);
 
-        // Cassini Division (dark gap)
-        const cassiniGeometry = new THREE.RingGeometry(36, 38, 128, 8);
-        const cassiniMaterial = new THREE.MeshBasicMaterial({
-            color: 0x000000,
-            side: THREE.DoubleSide,
-            transparent: true,
-            opacity: 0.9
-        });
-        const cassiniDivision = new THREE.Mesh(cassiniGeometry, cassiniMaterial);
-        cassiniDivision.rotation.x = Math.PI / 2;
-        cassiniDivision.rotation.z = THREE.MathUtils.degToRad(26.73);
-        this.scene.add(cassiniDivision);
+        // Debug log
+        console.log('Saturn and rings added to scene');
 
-        // Inner ring
-        const innerRingGeometry = new THREE.RingGeometry(25, 30, 128, 8);
-        const innerRingMaterial = new THREE.MeshPhongMaterial({
-            color: 0x8b7355,
-            side: THREE.DoubleSide,
-            transparent: true,
-            opacity: 0.6,
-            shininess: 30
-        });
-        const innerRing = new THREE.Mesh(innerRingGeometry, innerRingMaterial);
-        innerRing.rotation.x = Math.PI / 2;
-        innerRing.rotation.z = THREE.MathUtils.degToRad(26.73);
-        this.scene.add(innerRing);
-
+        // Animation properties
         this.clock = new THREE.Clock();
-        this.cameraAngle = 0;
     }
 
     animate() {
         requestAnimationFrame(() => this.animate());
 
-        const delta = this.clock.getDelta();
-        
-        // Slower rotation for more majestic movement
-        this.saturn.rotation.y += 0.02 * delta;
-        
-        // Smoother camera movement
-        this.cameraAngle += 0.05 * delta;
-        const radius = 100;
-        const height = Math.sin(this.cameraAngle * 0.5) * 30;
-        
-        this.camera.position.x = Math.cos(this.cameraAngle) * radius;
-        this.camera.position.z = Math.sin(this.cameraAngle) * radius;
-        this.camera.position.y = height;
-        
+        // Rotate Saturn
+        if (this.saturn) {
+            this.saturn.rotation.y += 0.005;
+        }
+
+        // Rotate camera around Saturn
+        const time = this.clock.getElapsedTime();
+        const radius = 150;
+        this.camera.position.x = radius * Math.cos(time * 0.1);
+        this.camera.position.z = radius * Math.sin(time * 0.1);
+        this.camera.position.y = Math.sin(time * 0.1) * 30;
         this.camera.lookAt(0, 0, 0);
 
-        this.renderer.render(this.scene, this.camera);
+        // Render scene
+        if (this.renderer && this.scene && this.camera) {
+            this.renderer.render(this.scene, this.camera);
+        }
     }
 }
