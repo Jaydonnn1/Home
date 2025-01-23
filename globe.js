@@ -3,47 +3,50 @@ class Globe {
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x000000);
         
+        // Enhanced camera setup for Saturn viewing
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.camera.position.set(30, 20, 30);
+        
         this.renderer = new THREE.WebGLRenderer({ 
             canvas: document.getElementById('globe-canvas'),
-            antialias: true
+            antialias: true,
+            alpha: true
         });
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         
-        // Load Saturn textures
-        const textureLoader = new THREE.TextureLoader();
-        const saturnTexture = textureLoader.load('https://www.solarsystemscope.com/textures/download/8k_saturn.jpg');
-        const ringTexture = textureLoader.load('https://www.solarsystemscope.com/textures/download/8k_saturn_ring_alpha.png');
-        
-        this.initSaturn(saturnTexture);
-        this.initRings(ringTexture);
+        this.initSaturn();
         this.setupLights();
-        this.setupCamera();
-        
+        this.setupCameraAnimation();
         this.animate();
     }
     
-    initSaturn(texture) {
-        const geometry = new THREE.SphereGeometry(10, 64, 64);
-        const material = new THREE.MeshPhongMaterial({
-            map: texture,
-            bumpScale: 0.05,
-            specular: new THREE.Color(0x333333)
+    initSaturn() {
+        // Create Saturn's body
+        const saturnGeometry = new THREE.SphereGeometry(10, 64, 64);
+        const textureLoader = new THREE.TextureLoader();
+        
+        // Load Saturn's texture
+        const saturnTexture = textureLoader.load('https://www.solarsystemscope.com/textures/download/8k_saturn.jpg');
+        const saturnMaterial = new THREE.MeshPhongMaterial({
+            map: saturnTexture,
+            bumpScale: 0.05
         });
         
-        this.saturn = new THREE.Mesh(geometry, material);
-        // Saturn's axial tilt
+        this.saturn = new THREE.Mesh(saturnGeometry, saturnMaterial);
+        
+        // Apply Saturn's axial tilt (26.73 degrees)
         this.saturn.rotation.z = THREE.MathUtils.degToRad(26.73);
         this.scene.add(this.saturn);
-    }
-    
-    initRings(texture) {
-        const ringGeometry = new THREE.RingGeometry(15, 25, 128);
+        
+        // Create Saturn's rings
+        const ringGeometry = new THREE.RingGeometry(15, 25, 128, 64);
+        const ringTexture = textureLoader.load('https://www.solarsystemscope.com/textures/download/8k_saturn_ring_alpha.png');
         const ringMaterial = new THREE.MeshPhongMaterial({
-            map: texture,
+            map: ringTexture,
             transparent: true,
-            side: THREE.DoubleSide
+            side: THREE.DoubleSide,
+            opacity: 0.8
         });
         
         this.rings = new THREE.Mesh(ringGeometry, ringMaterial);
@@ -52,23 +55,21 @@ class Globe {
         this.scene.add(this.rings);
     }
     
-    setupCamera() {
-        this.camera.position.set(30, 20, 30);
-        this.camera.lookAt(0, 0, 0);
-        
-        // Camera animation parameters
-        this.cameraAngle = 0;
-        this.cameraHeight = 0;
-        this.radius = 40;
-    }
-    
     setupLights() {
         const mainLight = new THREE.DirectionalLight(0xffffff, 1.5);
         mainLight.position.set(30, 0, 30);
         
         const ambientLight = new THREE.AmbientLight(0x404040);
+        const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        backLight.position.set(-30, 0, -30);
         
-        this.scene.add(mainLight, ambientLight);
+        this.scene.add(mainLight, ambientLight, backLight);
+    }
+    
+    setupCameraAnimation() {
+        this.cameraAngle = 0;
+        this.cameraHeight = 0;
+        this.radius = 40;
     }
     
     animate() {
