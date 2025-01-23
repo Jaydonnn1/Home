@@ -3,6 +3,7 @@
     <link rel="canonical" href="https://joshhaydonrowe.com/" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Josh Haydon Rowe</title>
     <style>
         body {
@@ -69,7 +70,7 @@
     <div class="top-nav">
         <a href="#engineering">Engineering</a>
         <a href="#travels">Travels</a>
-        <a href=""></a>
+        <a href="resume..pdf">Resume</a>
     </div>
 
 
