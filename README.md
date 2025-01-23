@@ -95,7 +95,7 @@
     <div class="top-nav">
         <a href="#engineering">Engineering</a>
         <a href="#travels">Travels</a>
-        <a href="resume..pdf">Resume</a>
+        <a href="resume..pdf"/a>
     </div>
 
 
