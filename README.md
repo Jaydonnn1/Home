@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Josh Haydon Rowe</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <!-- Texture preloading -->
-    <link rel="preload" as="image" href="https://www.solarsystemscope.com/textures/download/8k_saturn.jpg">
-    <link rel="preload" as="image" href="https://www.solarsystemscope.com/textures/download/8k_saturn_ring_alpha.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r159/three.min.js"></script>
     
 <style>
     body {
@@ -147,7 +143,6 @@
         </div>
     </section>
 
-    <!-- Added viewing space for Saturn -->
     <div class="viewing-space"></div>
     
     <script src="globe.js"></script>
