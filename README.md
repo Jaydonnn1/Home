@@ -93,10 +93,10 @@
         <canvas id="globe-canvas"></canvas>
     </div>
     <div class="top-nav">
-        <a href="#engineering">Engineering</a>
-        <a href="#travels">Travels</a>
-        <a href="resume..pdf"/a>
+    <a href="#engineering">Engineering</a>
+    <a href="#travels">Travels</a>
     </div>
+
 
 
     <div class="header-content">
