@@ -1,87 +1,73 @@
 class Globe {
     constructor() {
-        // Debug log to ensure constructor is called
-        console.log('Initializing Saturn visualization');
-        this.init();
-        this.animate();
-    }
-
-    init() {
-        // Create scene
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x000000);
-
-        // Camera setup
-        this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-        this.camera.position.set(0, 0, 150);
-
-        // Renderer setup
-        this.renderer = new THREE.WebGLRenderer({
+        
+        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.camera.position.set(0, 30, 100);
+        
+        this.renderer = new THREE.WebGLRenderer({ 
             canvas: document.getElementById('globe-canvas'),
-            antialias: true,
-            alpha: false
+            antialias: true
         });
+        this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        // Basic lighting
-        const light = new THREE.DirectionalLight(0xffffff, 3);
-        light.position.set(50, 50, 50);
-        this.scene.add(light);
-
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-        this.scene.add(ambientLight);
-
-        // Create Saturn
-        const geometry = new THREE.SphereGeometry(15, 32, 32);
-        const material = new THREE.MeshStandardMaterial({
-            color: 0xffd700,
-            metalness: 0.1,
-            roughness: 0.7
+        
+        // Initialize globe
+        this.initGlobe();
+        
+        // Setup lights
+        this.setupLights();
+        
+        // Start animation
+        this.animate();
+    }
+    
+    initGlobe() {
+        // Create Saturn's body
+        const GLOBE_RADIUS = 5;
+        const geometry = new THREE.SphereGeometry(GLOBE_RADIUS, 64, 64);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0xf4d03f, // Golden yellow
+            transparent: true,
+            opacity: 1,
+            shininess: 25
         });
         
-        this.saturn = new THREE.Mesh(geometry, material);
-        this.scene.add(this.saturn);
-
-        // Create rings
-        const ringGeometry = new THREE.RingGeometry(20, 35, 64);
-        const ringMaterial = new THREE.MeshStandardMaterial({
-            color: 0xc0c0c0,
+        this.globe = new THREE.Mesh(geometry, material);
+        this.scene.add(this.globe);
+        
+        // Create Saturn's rings
+        const ringGeometry = new THREE.RingGeometry(8, 12, 64, 8);
+        const ringMaterial = new THREE.MeshPhongMaterial({
+            color: 0xd4c4a8, // Beige color for rings
             side: THREE.DoubleSide,
-            metalness: 0.3,
-            roughness: 0.6
+            transparent: true,
+            opacity: 0.8,
+            shininess: 30
         });
         
         this.rings = new THREE.Mesh(ringGeometry, ringMaterial);
         this.rings.rotation.x = Math.PI / 2;
         this.scene.add(this.rings);
-
-        // Debug log
-        console.log('Saturn and rings added to scene');
-
-        // Animation properties
-        this.clock = new THREE.Clock();
+        
+        // Position camera
+        this.camera.position.z = 15;
     }
-
+    
+    setupLights() {
+        const light = new THREE.DirectionalLight(0xffffff, 2);
+        light.position.set(5, 3, 5);
+        this.scene.add(light);
+        
+        const ambientLight = new THREE.AmbientLight(0x404040, 1);
+        this.scene.add(ambientLight);
+    }
+    
     animate() {
         requestAnimationFrame(() => this.animate());
-
-        // Rotate Saturn
-        if (this.saturn) {
-            this.saturn.rotation.y += 0.005;
-        }
-
-        // Rotate camera around Saturn
-        const time = this.clock.getElapsedTime();
-        const radius = 150;
-        this.camera.position.x = radius * Math.cos(time * 0.1);
-        this.camera.position.z = radius * Math.sin(time * 0.1);
-        this.camera.position.y = Math.sin(time * 0.1) * 30;
-        this.camera.lookAt(0, 0, 0);
-
-        // Render scene
-        if (this.renderer && this.scene && this.camera) {
-            this.renderer.render(this.scene, this.camera);
-        }
+        
+        this.globe.rotation.y += 0.001;
+        this.renderer.render(this.scene, this.camera);
     }
 }
