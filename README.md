@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Josh Haydon Rowe</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Texture preloading -->
+    <link rel="preload" as="image" href="https://www.solarsystemscope.com/textures/download/8k_saturn.jpg">
+    <link rel="preload" as="image" href="https://www.solarsystemscope.com/textures/download/8k_saturn_ring_alpha.png">
+    
 <style>
     body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
+        background-color: #000000;
     }
 
     .top-nav {
@@ -24,22 +30,25 @@
 
     .top-nav a {
         text-decoration: none;
-        color: #333;
+        color: #fff;
         padding: 10px 20px;
-        border: 1px solid #333;
+        border: 1px solid #fff;
         border-radius: 5px;
         transition: all 0.3s ease;
-        background-color: white;
+        background-color: transparent;
     }
 
     .top-nav a:hover {
-        background-color: #333;
-        color: white;
+        background-color: #fff;
+        color: #000;
     }
 
     .header-content {
         text-align: center;
         padding: 40px 0;
+        color: #fff;
+        position: relative;
+        z-index: 1;
     }
 
     .header-content h1 {
@@ -53,6 +62,10 @@
 
     section {
         padding: 50px;
+        color: #fff;
+        position: relative;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.7);
     }
 
     h2 {
@@ -63,41 +76,47 @@
         padding: 10px 20px;
         margin: 5px;
         cursor: pointer;
+        background-color: transparent;
+        color: #fff;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        transition: all 0.3s ease;
     }
 
-    /* Globe styles */
-    #globe-container {
-        width: 100%;
-        height: 100vh;
-        position: relative;
-        overflow: hidden;
+    .travel-buttons button:hover {
+        background-color: #fff;
+        color: #000;
     }
-    
-    #globe-placeholder {
-        position: absolute;
-        width: 100%;
-        height: 100%;
+
+    #globe-container {
+        background-color: #000000;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
     }
     
     #globe-canvas {
         position: absolute;
         width: 100%;
         height: 100%;
+        top: 0;
+        left: 0;
     }
 </style>
 </head>
 
 <body>
     <div id="globe-container">
-        <div id="globe-placeholder"></div>
         <canvas id="globe-canvas"></canvas>
     </div>
+    
     <div class="top-nav">
-    <a href="#engineering">Engineering</a>
-    <a href="#travels">Travels</a>
+        <a href="#engineering">Engineering</a>
+        <a href="#travels">Travels</a>
     </div>
-
-
 
     <div class="header-content">
         <h1>Josh Haydon Rowe</h1>
@@ -122,18 +141,18 @@
             <button onclick="location.href='lima-to-ushuaia.html'">Lima to Ushuaia - Hitchhiking the Panamerican Highway</button>
         </div>
     </section>
+    
     <script src="globe.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const globe = new Globe();
-        
-        // Handle window resizing
-        window.addEventListener('resize', () => {
-            globe.camera.aspect = window.innerWidth / window.innerHeight;
-            globe.camera.updateProjectionMatrix();
-            globe.renderer.setSize(window.innerWidth, window.innerHeight);
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const globe = new Globe();
+            
+            window.addEventListener('resize', () => {
+                globe.camera.aspect = window.innerWidth / window.innerHeight;
+                globe.camera.updateProjectionMatrix();
+                globe.renderer.setSize(window.innerWidth, window.innerHeight);
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
