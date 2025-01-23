@@ -1,51 +1,159 @@
-class Globe {
-    constructor() {
-        this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0x000000);
-        
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        
-        this.renderer = new THREE.WebGLRenderer({ 
-            canvas: document.getElementById('globe-canvas'),
-            antialias: true,
-            alpha: true
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://joshhaydonrowe.com/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Josh Haydon Rowe</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Texture preloading -->
+    <link rel="preload" as="image" href="https://www.solarsystemscope.com/textures/download/8k_saturn.jpg">
+    <link rel="preload" as="image" href="https://www.solarsystemscope.com/textures/download/8k_saturn_ring_alpha.png">
+    
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #000000;
+    }
+
+    .top-nav {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        gap: 15px;
+        z-index: 1000;
+    }
+
+    .top-nav a {
+        text-decoration: none;
+        color: #fff;
+        padding: 10px 20px;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        background-color: transparent;
+    }
+
+    .top-nav a:hover {
+        background-color: #fff;
+        color: #000;
+    }
+
+    .header-content {
+        text-align: center;
+        padding: 40px 0;
+        color: #fff;
+        position: relative;
+        z-index: 1;
+    }
+
+    .header-content h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    .header-content p {
+        font-size: 1.2em;
+    }
+
+    section {
+        padding: 50px;
+        color: #fff;
+        position: relative;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .travel-buttons button {
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+        background-color: transparent;
+        color: #fff;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .travel-buttons button:hover {
+        background-color: #fff;
+        color: #000;
+    }
+
+    #globe-container {
+        background-color: #000000;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
+    }
+    
+    #globe-canvas {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+</style>
+</head>
+
+<body>
+    <div id="globe-container">
+        <canvas id="globe-canvas"></canvas>
+    </div>
+    
+    <div class="top-nav">
+        <a href="#engineering">Engineering</a>
+        <a href="#travels">Travels</a>
+    </div>
+
+    <div class="header-content">
+        <h1>Josh Haydon Rowe</h1>
+        <p>Welcome to My Personal Website</p>
+    </div>
+
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>I am a senior majoring in chemical engineering at the University of Edinburgh with a year abroad at UC Berkeley, with research experience at Yale, and a few months interning at Tesla. I'm interested in renewable energy sources, climate tech, global exploration, language learning & a little surfing on the side.</p>
+    </section>
+
+    <section id="engineering">
+        <h2>Engineering</h2>
+        <p>This section is dedicated to engineering.</p>
+    </section>
+
+    <section id="travels">
+        <h2>Travels</h2>
+        <p>Explore my travel adventures:</p>
+        <div class="travel-buttons">
+            <button onclick="location.href='mexico-to-colombia.html'">Mexico to Colombia</button>
+            <button onclick="location.href='lima-to-ushuaia.html'">Lima to Ushuaia - Hitchhiking the Panamerican Highway</button>
+        </div>
+    </section>
+    
+    <script src="globe.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const globe = new Globe();
+            
+            window.addEventListener('resize', () => {
+                globe.camera.aspect = window.innerWidth / window.innerHeight;
+                globe.camera.updateProjectionMatrix();
+                globe.renderer.setSize(window.innerWidth, window.innerHeight);
+            });
         });
-        this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        
-        this.initGlobe();
-        this.setupLights();
-        this.animate();
-    }
-    
-    initGlobe() {
-        const GLOBE_RADIUS = 5;
-        const geometry = new THREE.SphereGeometry(GLOBE_RADIUS, 32, 32);
-        const material = new THREE.MeshPhongMaterial({
-            color: 0x2b3595,
-            transparent: true,
-            opacity: 0.8
-        });
-        
-        this.globe = new THREE.Mesh(geometry, material);
-        this.scene.add(this.globe);
-        
-        this.camera.position.z = 15;
-    }
-    
-    setupLights() {
-        const light = new THREE.DirectionalLight(0xffffff, 1);
-        light.position.set(5, 3, 5);
-        this.scene.add(light);
-        
-        const ambientLight = new THREE.AmbientLight(0x404040);
-        this.scene.add(ambientLight);
-    }
-    
-    animate() {
-        requestAnimationFrame(() => this.animate());
-        
-        this.globe.rotation.y += 0.001;
-        this.renderer.render(this.scene, this.camera);
-    }
-}
+    </script>
+</body>
+</html>
+
