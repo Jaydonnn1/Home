@@ -138,7 +138,7 @@
         <h2>Travels</h2>
         <p>Explore my travel adventures:</p>
         <div class="travel-buttons">
-            <button onclick="location.href='mexico-to-colombia.html'">Mexico to Colombia</button>
+            <button onclick="location.href='mexico-to-colombia.html'">Mexico to Nicaragua</button>
             <button onclick="location.href='lima-to-ushuaia.html'">Lima to Ushuaia - Hitchhiking the Panamerican Highway</button>
         </div>
     </section>
