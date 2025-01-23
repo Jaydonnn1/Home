@@ -1,6 +1,45 @@
 class Globe {
     constructor() {
         this.scene = new THREE.Scene();
+        // Set black background
+        this.scene.background = new THREE.Color(0x000000);
+        
+        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.renderer = new THREE.WebGLRenderer({ 
+            canvas: document.getElementById('globe-canvas'),
+            antialias: true,
+            alpha: true
+        });
+        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        this.initGlobe();
+        this.addHalo();
+        this.setupLights();
+        
+        this.onWindowResize = this.onWindowResize.bind(this);
+        window.addEventListener('resize', this.onWindowResize, false);
+        
+        this.animate();
+    }
+    
+    initGlobe() {
+        // Create the sphere with radius 5 and 64 segments
+        const GLOBE_RADIUS = 5;
+        const geometry = new THREE.SphereGeometry(GLOBE_RADIUS, 64, 64);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0x2b3595,
+            transparent: true,
+            opacity: 0.8
+        });
+        
+        this.globe = new THREE.Mesh(geometry, material);
+        this.scene.add(this.globe);
+        
+        // Position camera to view the globe
+        this.camera.position.z = 15;
+    }
+        this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         
         // Enhanced renderer setup
