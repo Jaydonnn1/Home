@@ -5,89 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Josh Haydon Rowe</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
-        .top-nav {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 15px;
-            z-index: 1000;
-        }
+    .top-nav {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        gap: 15px;
+        z-index: 1000;
+    }
 
-        .top-nav a {
-            text-decoration: none;
-            color: #333;
-            padding: 10px 20px;
-            border: 1px solid #333;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            background-color: white;
-        }
+    .top-nav a {
+        text-decoration: none;
+        color: #333;
+        padding: 10px 20px;
+        border: 1px solid #333;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        background-color: white;
+    }
 
-        .top-nav a:hover {
-            background-color: #333;
-            color: white;
-        }
+    .top-nav a:hover {
+        background-color: #333;
+        color: white;
+    }
 
-        .header-content {
-            text-align: center;
-            padding: 40px 0;
-        }
+    .header-content {
+        text-align: center;
+        padding: 40px 0;
+    }
 
-        .header-content h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
+    .header-content h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
 
-        .header-content p {
-            font-size: 1.2em;
-        }
+    .header-content p {
+        font-size: 1.2em;
+    }
 
-        section {
-            padding: 50px;
-        }
+    section {
+        padding: 50px;
+    }
 
-        h2 {
-            text-align: center;
-        }
+    h2 {
+        text-align: center;
+    }
 
-        .travel-buttons button {
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-        }
+    .travel-buttons button {
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+    }
 
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <style>
-        /* Add to your existing styles */
-        #globe-container {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        #globe-placeholder {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-        
-        #globe-canvas {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-    </style>
+    /* Globe styles */
+    #globe-container {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    #globe-placeholder {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    #globe-canvas {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+</style>
 </head>
 
 <body>
