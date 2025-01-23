@@ -2,10 +2,15 @@ class Globe {
     constructor() {
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        
+        // Enhanced renderer setup
         this.renderer = new THREE.WebGLRenderer({ 
             canvas: document.getElementById('globe-canvas'),
-            antialias: false 
+            antialias: true,
+            alpha: true
         });
+        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
         
         // Initialize globe
         this.initGlobe();
@@ -16,13 +21,23 @@ class Globe {
         // Setup lights
         this.setupLights();
         
+        // Bind the resize handler to this instance
+        this.onWindowResize = this.onWindowResize.bind(this);
+        window.addEventListener('resize', this.onWindowResize, false);
+        
         // Start animation
         this.animate();
     }
     
+    onWindowResize() {
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    
     initGlobe() {
         const GLOBE_RADIUS = 5;
-        const geometry = new THREE.SphereGeometry(GLOBE_RADIUS, 32, 32);
+        const geometry = new THREE.SphereGeometry(GLOBE_RADIUS, 64, 64); // Increased segments for smoother sphere
         const material = new THREE.MeshPhongMaterial({
             color: 0x2b3595,
             transparent: true,
@@ -37,7 +52,7 @@ class Globe {
     }
     
     addHalo() {
-        const haloGeometry = new THREE.SphereGeometry(5.2, 32, 32);
+        const haloGeometry = new THREE.SphereGeometry(5.2, 64, 64); // Increased segments for smoother halo
         const haloMaterial = new THREE.ShaderMaterial({
             vertexShader: `
                 varying vec3 vNormal;
