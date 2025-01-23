@@ -63,10 +63,38 @@
             margin: 5px;
             cursor: pointer;
         }
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        /* Add to your existing styles */
+        #globe-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #globe-placeholder {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #globe-canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
     </style>
 </head>
 
 <body>
+    <div id="globe-container">
+        <div id="globe-placeholder"></div>
+        <canvas id="globe-canvas"></canvas>
+    </div>
     <div class="top-nav">
         <a href="#engineering">Engineering</a>
         <a href="#travels">Travels</a>
